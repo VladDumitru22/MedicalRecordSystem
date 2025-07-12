@@ -9,10 +9,14 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         MedicalRecord record = new MedicalRecord("", 0);
         record.readFromInput(scanner);
+        record.addNewEventInteractive();
         record.displayRecord();
+
 
         System.out.print("\nEnter the year you want statistics for: ");
         int year = scanner.nextInt();
         record.displayStatisticsForYear(year);
+
+        record.calculateLaceScore();
     }
 }
