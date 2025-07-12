@@ -51,6 +51,7 @@ public class MedicalRecord {
 
             System.out.print("Year: ");
             int year = scanner.nextInt();
+            scanner.nextLine();
 
             System.out.print("Medical Department: ");
             String medicalDepartment = scanner.nextLine();
@@ -75,5 +76,24 @@ public class MedicalRecord {
         for (MedicalEvent event : events) {
             System.out.println(event);
         }
+    }
+
+    public void displayStatisticsForYear(int year) {
+        int consultations = 0;
+        int totalHospitalizationDays = 0;
+
+        for (MedicalEvent event : events) {
+            if(event.getYear() == year) {
+                if(event instanceof Consultation) {
+                    consultations++;
+                } else if (event instanceof Hospitalization) {
+                    Hospitalization h = (Hospitalization) event;
+                    totalHospitalizationDays += h.getNumberOfDays();
+                }
+            }
+        }
+        System.out.println("\nStatistics for year " + year + ":");
+        System.out.println("Number of consultations: " + consultations);
+        System.out.println("Total days of hospitalization: " + totalHospitalizationDays);
     }
 }
